@@ -1,0 +1,62 @@
+﻿@model Filmes.Models.ListaFilmes
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Visualizar";
+}
+
+<h2>Detalhes</h2>
+
+<div class="row">
+    <div col="md-12">
+        <div class="form-horizontal">
+            <div class="form-group">
+
+
+                <div class="panel panel-default">
+
+
+                    <div class="panel-body col-md-10">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    @if (Model.Filme.imagem != "")
+                                    {
+                                        <img src="@Model.Filme.imagem" class="img-responsive" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Content/imagens/sem_foto.png" />
+                                    }
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-horizontal">  
+                                        <div class="form-group">                                     
+                                            <div class="col-md-6">
+                                                @Html.Label("Título")
+                                                @Html.EditorFor(model => Model.Filme.titulo_original, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                            </div>
+                                            <div class="col-md-6">
+                                                @Html.Label("Lançamento")
+                                                @Html.EditorFor(model => Model.Filme.lancamento, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                            </div>
+                                            </div>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                @Html.Label("Sinopse")
+                                                @Html.TextAreaFor(model => Model.Filme.descricao, new { @class = "form-control", @disabled = "disabled", cols = "40", rows = "10" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <a href="@Url.Action("Index", "Home", new { pesquisa = Model.pesquisa })" class="btn btn-primary right">Voltar</a>
+</div>

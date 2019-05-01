@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+}
+
+
+@using (Ajax.BeginForm("Index", "Home", null,
+                                                            new AjaxOptions
+                                                            {
+                                                                InsertionMode = InsertionMode.Replace,
+                                                                HttpMethod = "POST",
+                                                                UpdateTargetId = "div-index",
+
+                                                            }, new { id = "FormPesquisa" }))
+{
+
+    <h2>Últimos lançamentos</h2>
+
+    <div id="div-index">
+        @Html.Partial("_Index")
+    </div>
+
+}
+<style>
+    .panel-body {
+        max-height: 300px;
+    }
+
+    .img-responsive {
+        max-height: 220px;
+    }
+
+    .col-md-4 {
+        max-height: 280px;
+    }
+</style>

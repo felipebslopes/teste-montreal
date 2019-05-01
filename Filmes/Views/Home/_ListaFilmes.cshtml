@@ -1,0 +1,66 @@
+﻿@model PagedList.IPagedList<Filmes.Models.DadosFilmes>
+
+@using PagedList.Mvc
+
+
+<div class="row">
+    <div col="md-12">
+        <div class="container">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    @foreach (var item in Model)
+                    {
+
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+
+
+                                <div class="panel-body">
+                                    <div class="container">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <div class="col-md-5">
+                                                    @if (item.imagem != "" && item.imagem != null)
+                                                    {
+                                                        <img src="@item.imagem" class="img-responsive" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="~/Content/imagens/sem_foto.png" class="img-responsive" />
+                                                    }
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <strong> @item.titulo_original</strong><br /><br />
+
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <a href="@Url.Action("Visualizar", "Home", new { item.id, Model.FirstOrDefault().pesquisa })" class="btn btn-primary right">Saiba mais</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="container" style="margin-left: 20px">
+        <p></p>
+        <p></p>
+        <div class="pagination" style="margin-left: 400px">
+            Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+            de @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("Index", new { page, Model.FirstOrDefault().pesquisa }))
+        </div>
+    </div>
+</div>
+
+
